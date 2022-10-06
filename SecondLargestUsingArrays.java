@@ -9,7 +9,7 @@ public class SecondLargestUsingArrays {
 			int length = numbers.length;
 			//System.out.println(length);
 			Arrays.sort(numbers);
-			System.out.println("second largest number is " + numbers[5]);	
+			System.out.println("second largest number is " + numbers[numbers.length-2]);	
 			
 	}
 
