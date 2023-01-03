@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "bc76b743-2bd3-4df0-8512-77f1915d63d2",
+		"name": "ServiceNow_QueryParamsPractice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25040809"
+	},
+	"item": [
+		{
+			"name": "CreateIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Code is 200 or 201- Incident Created Successfully \", function () { \r",
+							"       pm.expect(pm.response.code).to.be.oneOf([200,201]);    \r",
+							"});\r",
+							"Resp=pm.response.json();\r",
+							"pm.globals.set(\"sysid\",Resp.result.sys_id);\r",
+							"\r",
+							"console.log(\"SystemID\",Resp.result.sys_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Practice Query Params\",\r\n    \"short_description\": \"Incident Creation\",\r\n    \"urgency\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{SIT}}/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"{{SIT}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrieveUsingQueryParams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{SIT}}/api/now/table/incident/{{sysid}}?Urgency=2&Description=Practice Query Params",
+					"protocol": "https",
+					"host": [
+						"{{SIT}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{sysid}}"
+					],
+					"query": [
+						{
+							"key": "Urgency",
+							"value": "2"
+						},
+						{
+							"key": "Description",
+							"value": "Practice Query Params"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "/8ZzUcA+V9jj",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
