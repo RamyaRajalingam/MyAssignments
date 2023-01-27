@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "6aba3d33-3e31-4041-9e2b-c2b0247c4d45",
+		"name": "Jira_New",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25040809"
+	},
+	"item": [
+		{
+			"name": "CreateBug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"response=pm.response.json();\r",
+							"pm.globals.set(\"Bugid\",response.id);\r",
+							"console.log(\"Bugid\",response.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"NEWBUG\"\r\n        },\r\n        \"summary\": \"create issue in Jira project\",\r\n        \"description\": \"Creating of an issue using project keys and issue type names using the REST API\",\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://aadhirai2812.atlassian.net/rest/api/2/issue",
+					"protocol": "https",
+					"host": [
+						"aadhirai2812",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read_Bug_Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/issue/{{Bugid}}",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{Bugid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_Bug_Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Bug Updated (New BuG) Using RestAPI Testing\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/issue/{{Bugid}}",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{Bugid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Bug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/issue/{{Bugid}}",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{Bugid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchAllBugs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/search?jql=project=\"Jira_Postman_New\"",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "jql",
+							"value": "project=\"Jira_Postman_New\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAll_Bug_Types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/issuetype",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read_BugType_withBugID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "03v2GGMEkMErSLXfFXboFD42",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ramyaajaykumar2010@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Jira_NewEnvn}}/rest/api/2/issuetype/10008",
+					"host": [
+						"{{Jira_NewEnvn}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype",
+						"10008"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
